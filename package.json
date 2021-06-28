@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "proxy": "http://localhost:3001",
+  "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build",
   "engines": {
     "node": "14.17.1"
   },
