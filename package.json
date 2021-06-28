@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "proxy": "http://localhost:3001",
-  "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build",
   "engines": {
     "node": "14.17.1"
   },
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd ../client && npm install --only=dev && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
