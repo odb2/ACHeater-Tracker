@@ -5,7 +5,7 @@
   "main": "index.js",
   "proxy": "http://localhost:3001",
   "engines": {
-    "node": "your-node-version"
+    "node": "14.17.1"
   },
   "scripts": {
     "start": "node server/index.js",
