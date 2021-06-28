@@ -6,7 +6,7 @@
   "proxy": "http://localhost:3001",
   "engines": {
     "node": "your-node-version"
-  }
+  },
   "scripts": {
     "start": "node server/index.js",
     "build": "cd client && npm install && npm run build"
