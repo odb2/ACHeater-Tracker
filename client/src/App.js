@@ -3,7 +3,7 @@ import Weather from "./Weather";
 import "./App.css";
 
 function App() {
-  const [data, setData] = React.useState(null);
+  //const [data, setData] = React.useState(null);
 
   // React.useEffect(() => {
   //   fetch("/api")

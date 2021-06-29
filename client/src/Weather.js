@@ -37,10 +37,10 @@ class Weather extends Component {
             const dates_holder = [];
             for (var a in this.state.data){
                 dates_holder.push(a)
-                if(a == this.state.startdate){
+                if(a === this.state.startdate){
                     index_startdate = counter
                 }
-                if(a == this.state.enddate){
+                if(a === this.state.enddate){
                     index_enddate = counter
                 }
                 counter++
