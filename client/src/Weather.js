@@ -5,35 +5,38 @@ class Weather extends Component {
     constructor(){
         super()
         this.state = {
-            weather: "Not yet gotten",
+            weather: 0,
+            weather2: 0,
             data: "",
-            startdate:''
-            enddate:''
+            startdate: "06/01/2020",
+            enddate: "06/02/2020"
         }
     }
     handleButtonClick = () => {
         axios.get("/weatherdata").then(response => {
-            console.log(response.data[0]);
+            console.log(response);
             this.setState({
-                weather: response.data[0].Temperature,
+                weather: response.data[this.state.startdate][0],
+                weather2: response.data[this.state.startdate][1],
                 data: response.data
             });
             console.log(this.state.data);
-
+            console.log(this.state.weather);
         });
     };
 
     handlestartdateOnChange(e) {
         this.setState({
-          name: e.target.value
+          startdate: e.target.value
         });
-        console.log(this.state.name);
+        console.log(this.state.startdate);
       }
+
     handleenddateOnChange(e) {
         this.setState({
-          name: e.target.value
+          enddate: e.target.value
         });
-        console.log(this.state.name);
+        console.log(this.state.enddate);
       }
 
     render() {
@@ -41,12 +44,12 @@ class Weather extends Component {
             <div>
                 <div>
                     <label>Add Start Date:</label>
-                    <input type="text" id="name" value={this.state.name} onChange={ (e) => this.handleNameOnChange(e) } />
-                    <input type="text" id="name" value={this.state.name} onChange={ (e) => this.handleNameOnChange(e) } />
-                    <input type="button" id="name" onClick=""/>
+                    <input type="text" id="startdate" value={this.state.startdate} onChange={ (e) => this.handlestartdateOnChange(e) } />
+                    <input type="text" id="enddate" value={this.state.enddate} onChange={ (e) => this.handleenddateOnChange(e) } />
+                    <input type="button" id="name2"/>
                 </div>
                 <button onClick={this.handleButtonClick}>Click me for data in console!</button>
-                <h1> The Weather in month is: {this.state.weather}</h1>
+                <h1> The amount of times the heater/AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.weather+this.state.weather2}</h1>
             </div>
         );
     }
