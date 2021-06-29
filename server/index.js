@@ -9,6 +9,7 @@ const app = express();
 weatherdata_parsed = JSON.parse(JSON.stringify(weatherdata).replace(/\s(?=\w+":)/g, ""));
 
 var result = {};
+var result2 = {};
 var heater_counter = 0;
 var clock = 0;
 var ac_counter = 0;
@@ -16,7 +17,9 @@ var ac_counter = 0;
 for(let i = 0; i < weatherdata_parsed.length-1; i++) {
     clock++
     if(clock == 24){
-        result[weatherdata_parsed[i].Datetime.split(" ")[0]] = [heater_counter,ac_counter]
+        result[weatherdata_parsed[i].Datetime.split(" ")[0]] = [heater_counter, ac_counter]
+        result2[weatherdata_parsed[i].Datetime.split(" ")[0]] = ac_counter
+
         heater_counter = 0;
         ac_counter = 0;
         clock = 0;
