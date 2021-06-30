@@ -32,13 +32,6 @@ for(let i = 0; i < weatherdata_parsed.length-1; i++) {
     }
 };
 
-// const test = result[0].getDate();
-// console.log(weatherdata_parsed.length)
-// console.log(weatherdata_parsed[0].Datetime.split(" ")[0])
-// console.log(weatherdata_parsed[0].Datetime.split(" ")[1])
-// console.log(weatherdata_parsed[0].MaximumTemperature)
-// console.log(result["06/01/2020"][0])
-
 // Handle GET requests to /api route
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
