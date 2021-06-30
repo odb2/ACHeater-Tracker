@@ -27,7 +27,7 @@ for(let i = 0; i < weatherdata_parsed.length-1; i++) {
     }
     if(weatherdata_parsed[i].MaximumTemperature >= 62 && weatherdata_parsed[i+1].MaximumTemperature < 62){
         heater_counter = heater_counter + 1
-    } else if(weatherdata_parsed[i].MaximumTemI also am completing a project for a restful API gathering weather from a JSON file. That project is here https://github.com/odb2/ACHeater-Tracker . this project can be seen live https://acheater-reporter.herokuapp.com/ enter dates between "06/01/2020" and "07/30perature <= 75 && weatherdata_parsed[i+1].MaximumTemperature > 75){
+    } else if(weatherdata_parsed[i].MaximumTemperature <= 75 && weatherdata_parsed[i+1].MaximumTemperature > 75){
         ac_counter = ac_counter + 1
     }
 };
