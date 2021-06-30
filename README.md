@@ -4,70 +4,51 @@
 * Project
 * Installation
 * How it Works
+* Results
 * Review Code/Documentation
 
 
 ## Project
-The Port of Portland is the port district responsible for management of the Portland
-International Airport, located at 45.5898° N, 122.5951° W. The port’s engineering
-directors are evaluating the demands on the airport’s existing HVAC system, assessing
-whether it needs replacement. Currently, the HVAC system is set such that the air-
-conditioning system is turned on when the outdoor temperature is over 75 degrees
-Fahrenheit. Similarly, the heating system is turned on when the outdoor temperature is
-under 62 degrees Fahrenheit.
-The engineering directors want to learn how often the air-conditioning and heating
-systems were turned on for July 2020. In particular, they would like a summary of data
-that provides the following:
+Currently, the HVAC system is set such that the air-conditioning system is turned on when the outdoor temperature is over 75 degrees Fahrenheit. Similarly, the heating system is turned on when the outdoor temperature is under 62 degrees Fahrenheit. The engineering directors want to learn how often the air-conditioning and heating systems were turned on for July 2020. In particular, they would like a summary of data that provides the following:
 
-• For each day in the given date range, indicate whether the air-conditioning
+* For each day in the given date range, indicate whether the air-conditioning
 system was turned on at least once.
-• For each day in the given date range, indicate whether the heating system was
+* For each day in the given date range, indicate whether the heating system was
 turned on at least once.
 
 Create a Restful API with the following specifications:
-• Fetch data for a month indicated by the web report
-• Transform data
-• Return JSON formatted data
-• (Optional) Present the results in a UI
+* Fetch data for a month indicated by the web report
+* Transform data
+* Return JSON formatted data
+* (Optional) Present the results in a UI
 
 ## Installation
 
-* Built on .NET framework 4.7
-* Uses gemboxsoftware link contains instructions to download into visual studio using (https://www.gemboxsoftware.com/document/examples/c-sharp-vb-net-word-pdf-library/801) for creating and manipulating .docx documents. You can also download through nuget package manager in visual studio make sure to install GemBox.Document
-
-<div align="center"><img width="650" src="nuget-gembox.jpg"></div>
-
-* Uses HtmlAgilityPack to obtain src to images instructions to download https://www.nuget.org/packages/HtmlAgilityPack/ or use Nuget package manager in visual studio to download
-
-<div align="center"><img width="650" src="nuget-htmlagilitypack.jpg"></div>
+* Built using NodeJS and ExpressJS as the backend
+* ReactJS used for the UI
+* The project is deployed and live through Heroku located at this link https://acheater-reporter.herokuapp.com/
 
 ## How It Works
 
-1. Download through git or download zip file and unpack onto laptop
-2. Open project file (\WindowsFormsApp2\WindowsFormsApp2.csproj) from visual studio
+1. Download through git clone or visit https://acheater-reporter.herokuapp.com/
+2. If downloaded through git clone start project by npm start
 3. Start the software.
-4. Popup Opens as seen here, In order for the bold to work it must map to a word in the content textbox. To get multiple words bolded seperate then by "," in the content bold textbox. Then after clicking search you will see the text changed to bold. Click the reset to change the content.
-
-<div align="center"><img width="650" src="demomainscreen.jpg"></div>
-
-4. Insert content into Title, Content, and Content Bold textboxes then click search.
-5. Change images by clicking "Next Image" and "Previous Image".
-
-<div align="center"><img width="650" src="demomainscreen-nextimage.jpg"></div>
-
-6. Add that image to the document by clicking on "Add to Document" then after choosing which images to show click "Create Document".
-
-<div align="center"><img width="650" src="demomainscreen-addtodocument.jpg"></div>
-
-7. Find the document named powerpoint.pptx inside \WindowsFormsApp2\bin\Debug 
-
-<div align="center"><img width="650" src="document-imagestext3.jpg"></div>
-<div align="center"><img width="650" src="document-imagestext2.jpg"></div>
 
 ## Review Code/Documentation
 
-Form1.cs - WindowsForm which contains all functions to work app<br>
-popupwindowdoc.cs - WindowsForm which contains popup to show when creating document or adding images to documentS
+
+    Excercise1
+    ├── Client              #
+    |    ├── build          # 
+    |    ├── node_modules   #
+    |    ├── public         #
+    |    ├── src            #
+    ├── node_modules            # 
+    └── server                  #
+        ├── benchmarks          # 
+        
+
+Following are functions and there descriptions
 
     private void Search_Button_Click(object sender, EventArgs e)
 
@@ -75,36 +56,4 @@ popupwindowdoc.cs - WindowsForm which contains popup to show when creating docum
 <li>desc: Function to search google images based on title and content bold words and display the first image.</li>
 <li>parameters: sender, event</li>
 <li>returns: list urls which contains images found from search</li>
-</ul>
-
-    private void AddtoDocument_Button_Click(object sender, EventArgs e)
-
-<ul>
-<li>desc: Works the "Add to Document" button by adding the current image from the url list to a new list named urls_save.</li>
-<li>parameters: sender, event</li>
-<li>returns: list urls_save which contains images going to be added to document.</li>
-</ul>
-
-    private void NextImage_Button_Click(object sender, EventArgs e)
-
-<ul>
-<li>desc: Works the "Next Image" button by changing the image shown to the next index.</li>
-<li>parameters: sender, event</li>
-<li>returns: new image displayed.</li>
-</ul>
-
-    private void PreviousImage_Button_Click(object sender, EventArgs e)
-
-<ul>
-<li>desc: Works the "Previous Image" button by changing the image shown to the previous index.</li>
-<li>parameters: sender, event</li>
-<li>returns: new image displayed.</li>
-</ul>
-
-    private void CreateDocument_Button_Click(object sender, EventArgs e)
-
-<ul>
-<li>desc: Works the "Create Document" button by saving the images along with content into a docx file.</li>
-<li>parameters: sender, event</li>
-<li>returns: docx file saved.</li>
 </ul>
