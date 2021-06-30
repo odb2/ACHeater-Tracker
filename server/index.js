@@ -7,9 +7,6 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-const obj = {};
-var passdata = [];
-
 weatherdata_parsed = JSON.parse(JSON.stringify(weatherdata).replace(/\s(?=\w+":)/g, ""));
 
 var result = {};
@@ -45,13 +42,14 @@ for(let i = 0; i < weatherdata_parsed.length-1; i++) {
 // Handle GET requests to /api route
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
+var passdata = [];
+
 app.get("/api/data", (req, res) => {
     var index_startdate = 0
     var index_enddate = 0
-    var counter = 0;   
-    console.log(req.query.startdate)
-    console.log(req.query.enddate)
+    var counter = 0;
     const dates_holder = [];
+    var obj = {}
     for (var a in result){
         dates_holder.push(a)
         if(a === req.query.startdate){
@@ -63,7 +61,6 @@ app.get("/api/data", (req, res) => {
         counter++
     }
     var dates_holder_t = dates_holder.slice(index_startdate,index_enddate+1)
-    console.log(dates_holder_t)
     passdata.push(dates_holder_t)
 
     
@@ -78,19 +75,27 @@ app.get("/api/data", (req, res) => {
         heater_holder.push(result[dates_holder_t[i]][0]);
         ac_holder.push(result[dates_holder_t[i]][1]);
     }
+
+    passdata.push(heater_holder)
     passdata.push(ac_holder)
 
     var sum = ac_holder.reduce((a,b) => a+b);
     var sum_2 = heater_holder.reduce((a,b) => a+b);
     var sum_total = sum + sum_2;
 
+    passdata.push(sum_total)
+
     for (const key of dates_holder_t){
-        console.log(key)
         obj[key] = {"Heater":result[key][0],"AC":result[key][1]}
     }
-    console.log(obj)
     res.send(obj);
 });
+
+// Handle GET requests to /api route
+app.get("/showui", (req, res) => {
+    res.send(passdata.slice(-4));
+});;
+
 
 // Handle GET requests to /api route
 app.get("/weatherdata", (req, res) => {
