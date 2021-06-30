@@ -21,6 +21,12 @@ class Weather extends Component {
         }
     }
 
+    apifunc = () => {
+        axios.get("/api/data").then(response => {
+            console.log(response)
+        });
+    };
+
     handleButtonClick = () => {
         axios.get("/weatherdata").then(response => {
             this.setState({
@@ -88,9 +94,22 @@ class Weather extends Component {
         });
       }
 
+    handleSubmit = event => {
+    event.preventDefault()
+    };
+
     render() {
         return (
             <div>
+                <div>
+                    <form action="/api/data">
+                        <label>Add Start Date:</label>
+                        <input type="text" name="startdate" />
+                        <label>Add End Date:</label>
+                        <input type="text" name="enddate" />
+                        <button type="submit" onClick={this.apifunc}>testing</button>
+                    </form>
+                </div>
                 <div>
                     <label>Add Start Date:</label>
                     <input type="text" id="startdate" value={this.state.startdate} onChange={ (e) => this.handlestartdateOnChange(e) } />

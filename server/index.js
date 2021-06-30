@@ -1,10 +1,14 @@
 const path = require('path');
 const weatherdata = require('../weatherdata.json')
 const express = require("express");
+const { query } = require('express');
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
+const obj = {};
+var passdata = [];
 
 weatherdata_parsed = JSON.parse(JSON.stringify(weatherdata).replace(/\s(?=\w+":)/g, ""));
 
@@ -36,29 +40,66 @@ for(let i = 0; i < weatherdata_parsed.length-1; i++) {
 // console.log(weatherdata_parsed[0].Datetime.split(" ")[0])
 // console.log(weatherdata_parsed[0].Datetime.split(" ")[1])
 // console.log(weatherdata_parsed[0].MaximumTemperature)
-// console.log(weatherdata_parsed[47])
+// console.log(result["06/01/2020"][0])
+
+// Handle GET requests to /api route
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+
+app.get("/api/data", (req, res) => {
+    var index_startdate = 0
+    var index_enddate = 0
+    var counter = 0;   
+    console.log(req.query.startdate)
+    console.log(req.query.enddate)
+    const dates_holder = [];
+    for (var a in result){
+        dates_holder.push(a)
+        if(a === req.query.startdate){
+            index_startdate = counter
+        }
+        if(a === req.query.enddate){
+            index_enddate = counter
+        }
+        counter++
+    }
+    var dates_holder_t = dates_holder.slice(index_startdate,index_enddate+1)
+    console.log(dates_holder_t)
+    passdata.push(dates_holder_t)
+
+    
+    const dates_counter = [];
+    for (var i = 0; i < dates_holder_t.length; i++){
+        dates_counter.push(result[dates_holder_t[i]])
+    }
+
+    var heater_holder = [];
+    var ac_holder = [];
+    for(let i = 0; i <= dates_holder_t.length-1; i++){
+        heater_holder.push(result[dates_holder_t[i]][0]);
+        ac_holder.push(result[dates_holder_t[i]][1]);
+    }
+    passdata.push(ac_holder)
+
+    var sum = ac_holder.reduce((a,b) => a+b);
+    var sum_2 = heater_holder.reduce((a,b) => a+b);
+    var sum_total = sum + sum_2;
+
+    for (const key of dates_holder_t){
+        console.log(key)
+        obj[key] = {"Heater":result[key][0],"AC":result[key][1]}
+    }
+    console.log(obj)
+    res.send(obj);
+});
 
 // Handle GET requests to /api route
 app.get("/weatherdata", (req, res) => {
     res.send(result);
-});
+});;
 
-// // Handle GET requests to /api route
-// app.get("/?start=test", function(req, res) {
-//     res.send(weatherdata_parsed);
-// });
-
-// Handle GET requests to /api route
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
-});
-
-
-app.get('', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
-
-app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
