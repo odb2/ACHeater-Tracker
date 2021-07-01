@@ -5,11 +5,13 @@ class Weather extends Component {
     constructor(){
         super()
         this.state = {
-            startdate: "",
-            enddate: "",
-            ac_holder_final: [0,0],
-            heater_holder_final: [0,0],
-            dates_holder_final: ["06/01/2020", "06/02/2020"],
+            startvalue: '',
+            endvalue: '',
+            startdate: '',
+            enddate: '',
+            ac_holder_final: [],
+            heater_holder_final: [],
+            dates_holder_final: [],
             sum_betweendates: 0,
             showing: true
         }
@@ -42,13 +44,13 @@ class Weather extends Component {
 
     handlestartdateOnChange(e) {
         this.setState({
-          startdate: e.target.value
+          startvalue: e.target.value
         });
       };
 
     handleenddateOnChange(e) {
         this.setState({
-          enddate: e.target.value
+          endvalue: e.target.value
         });
       };
 
@@ -59,9 +61,9 @@ class Weather extends Component {
                 <div>
                     <form action="/api/data">
                         <label>Add Start Date:</label>
-                        <input type="text" name="startdate" value="" onChange={ (e) => this.handlestartdateOnChange(e) }/>
+                        <input type="text" name="startdate" value={this.state.startvalue} onChange={ (e) => this.handlestartdateOnChange(e) }/>
                         <label>Add End Date:</label>
-                        <input type="text" name="enddate" value="" onChange={ (e) => this.handleenddateOnChange(e) } />
+                        <input type="text" name="enddate" value={this.state.endvalue} onChange={ (e) => this.handleenddateOnChange(e) } />
                         <button type="submit" onClick={this.handleButtonClick()}>Output Json File</button>
                     </form>
                 </div>
