@@ -59,9 +59,9 @@ class Weather extends Component {
                 <div>
                     <form action="/api/data">
                         <label>Add Start Date:</label>
-                        <input type="text" name="startdate" value={this.state.startdate} onChange={ (e) => this.handlestartdateOnChange(e) }/>
+                        <input type="text" name="startdate" value="" onChange={ (e) => this.handlestartdateOnChange(e) }/>
                         <label>Add End Date:</label>
-                        <input type="text" name="enddate" value={this.state.enddate} onChange={ (e) => this.handleenddateOnChange(e) } />
+                        <input type="text" name="enddate" value="" onChange={ (e) => this.handleenddateOnChange(e) } />
                         <button type="submit" onClick={this.handleButtonClick()}>Output Json File</button>
                     </form>
                 </div>
