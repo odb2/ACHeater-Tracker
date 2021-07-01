@@ -13,6 +13,8 @@ class Weather extends Component {
             heater_holder_final: [],
             dates_holder_final: [],
             sum_betweendates: 0,
+            heater_or_ac: 0,
+            heater_and_ac: 0,
             showing: true
         }
     }
@@ -32,6 +34,8 @@ class Weather extends Component {
                 sum_betweendates: response.data[3],
                 startdate: response.data[0][0],
                 enddate: response.data[0].slice(-1),
+                heater_or_ac: response.data[4],
+                heater_and_ac: response.data[5]
             });
         });
     }
@@ -69,7 +73,8 @@ class Weather extends Component {
                 </div>
                 <button onClick={this.ToggleUI}>Show UI</button>
                 <div id="UI_Display" style={{ display: (this.state.showing ? 'none' : 'block') }}>
-                    <h2> The amount of times the heater/AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.sum_betweendates} times</h2>
+                    <h3> The amount of times the heater or AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.heater_or_ac} times</h3>
+                    <h3> The amount of times the heater and AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.heater_and_ac} times</h3>
                     <ul>
                         {this.state.dates_holder_final.map((item,i) => {
                     return <li id={i}>Date: {item}

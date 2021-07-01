@@ -19,7 +19,7 @@ var ac_counter = 0;
 for(let i = 0; i < weatherdata_parsed.length-1; i++) {
     clock++
     if(clock == 24){
-        result[weatherdata_parsed[i].Datetime.split(" ")[0]] = [heater_counter, ac_counter]
+        result[weatherdata_parsed[i].Datetime.split(" ")[0]] =  [(heater_counter>0) ? 1 : 0, (ac_counter>0) ? 1 : 0]
 
         heater_counter = 0;
         ac_counter = 0;
@@ -96,17 +96,22 @@ app.get("/api/data", (req, res) => {
     var sum_total = sum + sum_2;
 
     passdata.push(sum_total)
-
+    var heater_or_ac = []
+    var heater_and_ac = []
     for (const key of dates_holder_t){
         obj[key] = {"Heater":result[key][0],"AC":result[key][1]}
+        heater_or_ac.push(((result[key][0]||result[key][1])==1 ? 1 : 0))
+        heater_and_ac.push(((result[key][0]&&result[key][1])==1 ? 1 : 0))
     }
+    passdata.push(heater_or_ac.reduce((a,b)=> a+b))
+    passdata.push(heater_and_ac.reduce((a,b)=> a+b))
     res.send(obj);    
     }
 });
 
 // Handle GET requests to /api route
 app.get("/showui", (req, res) => {
-    res.send(passdata.slice(-4));
+    res.send(passdata.slice(-6));
 });;
 
 
