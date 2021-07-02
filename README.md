@@ -32,12 +32,18 @@ Create a Restful API with the following specifications:
 ## How It Works
 
 1. Download through git clone (then run "npm install" and "npm start" and go to localhost:3001 to view app) or visit https://acheater-reporter.herokuapp.com/
+
+<div align="center"><img width="600" src="frontpage.png" /></div>
+
 2. Once page finishes loading enter dates in format "MM/DD/YYYY" within the data given (06/01/2020-07/30/2020)
+
 3. Click "Output JSON File" button which then displays JSON data
 
     * Data is formatted as dates and whether the ac/heater was turned on at least once. 
         * '0' means false the ac/heater was not turned on at least once for that day and '1' means true the ac/heater was turned on at least once for that day.
     * To download the data right click and choose save as which will allow you to save JSON data.
+
+<div align="center"><img width="600" src="jsondatareturned.png" /></div>
 
 4. Now Click the back button on the browser which brings you back to the main form. Then click the button "Show UI" which will present:
 
@@ -45,6 +51,8 @@ Create a Restful API with the following specifications:
     * The amount of days the heater and ac was turned on at least once between the dates
     * The dates included with 
         * whether the ac/heater was turned on at least once '0' = false , '1' = true
+
+<div align="center"><img width="600" src="showui.png" /></div>
 
 5. Thats how my project works! Here are some bug fixes I did to prevent the user from breaking the software:
 
