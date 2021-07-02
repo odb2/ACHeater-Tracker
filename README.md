@@ -31,7 +31,7 @@ Create a Restful API with the following specifications:
 
 ## How It Works
 
-1. Download through git clone or visit https://acheater-reporter.herokuapp.com/
+1. Download through git clone (then run "npm install" and "npm start" and go to localhost:3001 to view app) or visit https://acheater-reporter.herokuapp.com/
 2. Once page finishes loading enter dates in format "MM/DD/YYYY" within the data given (06/01/2020-07/30/2020)
 3. Click "Output JSON File" button which then displays JSON data
 
