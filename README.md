@@ -76,7 +76,7 @@ If this feature is not wanted from the project manager this can be changed and c
 * Fix the design in react making it more appealing to the eyes
 * Format reactjs code better by adding more components
 * Fixing it so the UI shows up right away and the JSON data lets you download through a popup
-* 
+
 ## Review Code/Documentation
 
     Excercise1
@@ -92,8 +92,9 @@ If this feature is not wanted from the project manager this can be changed and c
     |    ├── index.js        #nodejs file which feeds data after manipulation to weather.js
     └── history_data_hourly.csv     #Contains the data to feed to index.js             
         
-### inside index.js
-<details>
+### Data -> JSON and manipulation
+
+<details open>
 <summary>Click to see script! (description of purpose below)</summary>
    
 ```js           
@@ -141,12 +142,22 @@ for(let i = 0; i < weatherdata_parsed.length-1; i++) {
 
 
 Description: 
--> Collects the history_data_hourly.csv file 
--> Converts to JSON -> removes spaces in keys 
--> Creates new json file containing {dates: [aconatleastonce (0 or 1), heatonatleastonce (0 or 1)]}
--> Then once data is submitted it index through new json file to select dates in range
    
-<details>
+-> Collects the history_data_hourly.csv file 
+   
+-> Converts to JSON -> removes spaces in keys 
+   
+-> Creates new json file containing {dates: [aconatleastonce (0 or 1), heatonatleastonce (0 or 1)]}
+   
+-> Then once data is submitted it index through new json file to select dates in range
+<br />
+<br />
+<br />
+   
+   
+### app.get which runs once form is submitted
+   
+<details open>
 <summary>Click to see app.get which runs when dates ares submitted! (description of purpose below)</summary>
    
 ```js           
@@ -244,7 +255,11 @@ app.get("/api/data", (req, res) => {
 
 
 Description: 
+   
 -> Finds index of startdate and enddate 
+   
 -> case statements incase startdate is after enddate or if dates are not within range ...
+   
 -> pushes data to be shown by the UI
+   
 -> returns json file which contains necessary data
