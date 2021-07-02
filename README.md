@@ -5,7 +5,7 @@
 * Installation
 * How it Works
 * Results
-* Review Code/Documentation
+* Review/Improvements
 
 
 ## Project
@@ -62,7 +62,7 @@ Same thing if you have dates such as "07/29/2020" to "08/20/2020" it will return
     
 If this feature is not wanted from the project manager this can be changed and could be easily fixed.
 
-## Review Code/Documentation
+## Review Code/Improvements
 
     Excercise1
     ├── Client          # contains the reactjs code/modules
@@ -77,12 +77,8 @@ If this feature is not wanted from the project manager this can be changed and c
         ├── index.js        #nodejs file which feeds data after manipulation to weather.js
         
 
-Following are functions and there descriptions
+### Ways to Improve
 
-    private void Search_Button_Click(object sender, EventArgs e)
-
-<ul>
-<li>desc: Function to search google images based on title and content bold words and display the first image.</li>
-<li>parameters: sender, event</li>
-<li>returns: list urls which contains images found from search</li>
-</ul>
+* Fix the design in react making it more appealing to the eyes
+* Format reactjs code better by adding more components
+* Fixing it so the UI shows up right away and the JSON data lets you download through a popup
