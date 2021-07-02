@@ -41,8 +41,8 @@ Create a Restful API with the following specifications:
 
 4. Now Click the back button on the browser which brings you back to the main form. Then click the button "Show UI" which will present:
 
-    * The amount of times the heater or ac was turned on at least once between the dates
-    * The amount of times the heater and ac was turned on at least once between the dates
+    * The amount of days the heater or ac was turned on at least once between the dates
+    * The amount of days the heater and ac was turned on at least once between the dates
     * The dates included with 
         * whether the ac/heater was turned on at least once '0' = false , '1' = true
 
