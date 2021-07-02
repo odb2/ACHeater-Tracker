@@ -73,8 +73,8 @@ class Weather extends Component {
                 </div>
                 <button onClick={this.ToggleUI}>Show UI</button>
                 <div id="UI_Display" style={{ display: (this.state.showing ? 'none' : 'block') }}>
-                    <h3> The amount of times the heater or AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.heater_or_ac} times</h3>
-                    <h3> The amount of times the heater and AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.heater_and_ac} times</h3>
+                    <h3> Number of days the heater or AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.heater_or_ac} days</h3>
+                    <h3> Number of days the heater and AC was turned on between {this.state.startdate} and {this.state.enddate} was: {this.state.heater_and_ac} days</h3>
                     <ul>
                         {this.state.dates_holder_final.map((item,i) => {
                     return <li id={i}>Date: {item}
