@@ -1,15 +1,29 @@
 const path = require('path');
-const weatherdata = require('../weatherdata.json')
 const express = require("express");
 let alert = require('alert');
-const moment = require('moment')
+const moment = require('moment');
+const XLSX = require('xlsx');
+const weatherdata_csv = path.resolve(__dirname, '../history_data_hourly.csv')
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// Grabs weatherdata.json and removes the spaces in the keys
-weatherdata_parsed = JSON.parse(JSON.stringify(weatherdata).replace(/\s(?=\w+":)/g, ""));
+/* 
+Beginning part of index.js 
+collects the history_data_hourly.csv file -> converts to JSON -> removes spaces in keys ->
+creates new json file containing dates: [aconatleastonce (0 or 1), heatonatleastonce (0 or 1)]
+-> Then once data is submitted it index through new json file to select dates in range
+*/
+
+let workbook = XLSX.readFile(weatherdata_csv, {raw:true});
+// read first sheet (identified by first of SheetNames)
+let sheet = workbook.Sheets[workbook.SheetNames[0]];
+// convert to JSON
+var weatherdata_parsed = XLSX.utils.sheet_to_json(sheet);
+
+// Grabs weatherdata_parsed.json and removes the spaces in the keys
+weatherdata_parsed = JSON.parse(JSON.stringify(weatherdata_parsed).replace(/\s(?=\w+":)/g, ""));
 
 // Initialises two variables passdata and result to pass into other portions of project
 var passdata = [];
@@ -24,7 +38,7 @@ var ac_counter = 0;
 // clock determines when to switch between dates (once clock hits 24, 0-23)
 var clock = 0;
 
-//Loop to go through every hour of data and seperate them to new json file
+//Loop to go through every hour of data and seperate them to new json file named result
 for(let i = 0; i < weatherdata_parsed.length-1; i++) {
     clock++
     if(clock == 24){
@@ -34,9 +48,9 @@ for(let i = 0; i < weatherdata_parsed.length-1; i++) {
         ac_counter = 0;
         clock = 0;
     }
-    if(weatherdata_parsed[i].MaximumTemperature >= 62 && weatherdata_parsed[i+1].MaximumTemperature < 62){
+    if(weatherdata_parsed[i].Temperature >= 62 && weatherdata_parsed[i+1].Temperature < 62){
         heater_counter = heater_counter + 1
-    } else if(weatherdata_parsed[i].MaximumTemperature <= 75 && weatherdata_parsed[i+1].MaximumTemperature > 75){
+    } else if(weatherdata_parsed[i].Temperature <= 75 && weatherdata_parsed[i+1].Temperature > 75){
         ac_counter = ac_counter + 1
     }
 };
